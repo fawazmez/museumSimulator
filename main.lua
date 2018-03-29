@@ -28,3 +28,20 @@ local calculateButton = display.newImageRect( "./assets/sprites/enterButton.png"
 calculateButton.x = display.contentCenterX +800
 calculateButton.y = display.contentCenterY +500
 calculateButton.id = "calculate button"
+
+local function calculateButtonTouch( event )
+  
+    local weekday
+	local age
+	local agetonumber
+
+	age = ageTextField.text
+	agetonumber = tonumber(age) 
+	day = dayTextField.text 
+
+	if weekday =="saturday" or weekday == "sunday" then
+		display.newText( "it's  a weekend your smart here a cookie", display.contentCenterX, display.contentCenterY + 200, native.systemFont, 100 )	
+
+
+    return true
+end
