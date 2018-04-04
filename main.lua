@@ -9,39 +9,45 @@
 -- Created on: March 2018 
 -----------------------------------------------------------------------------------------
 
--- instrcution
 local InstructionTextField = display.newText( "Enter age and the day of the week.", display.contentCenterX - 400, display.contentCenterY - 500, native.systemFont, 70 )
 
-local ageTextField = native.newTextField( display.contentCenterX - 500, display.contentCenterY - 200, 750, 150 )
-ageTextField.id = "age textField"
-
-local weekdayTextField = native.newTextField( display.contentCenterX - 500, display.contentCenterY - 00, 750, 150 )
-weekdayTextField.id = "weekday textField"
-
-local ageTitleTextField = display.newText( "age", display.contentCenterX - 00, display.contentCenterY - 200, native.systemFont, 100 )
+local ageTitleTextField = display.newText( "age", display.contentCenterX + 400, display.contentCenterY + 200, native.systemFont, 100 )
 ageTitleTextField:setFillColor( 99, 10, 88 )
 
-local weekdayTitleTextField = display.newText( "day of the week", display.contentCenterX + 300, display.contentCenterY - 00, native.systemFont, 100 )
+local weekdayTitleTextField = display.newText( "day of the week", display.contentCenterX + 600, display.contentCenterY - 00, native.systemFont, 100 )
 weekdayTitleTextField:setFillColor( 99, 10, 88 )
 
-local calculateButton = display.newImageRect( "./assets/sprites/enterButton.png", 406, 157 )
-calculateButton.x = display.contentCenterX +800
-calculateButton.y = display.contentCenterY +500
-calculateButton.id = "calculate button"
-
-local function calculateButtonTouch( event )
-  
-    local weekday
-	local age
-	local agetonumber
-
-	age = ageTextField.text
-	agetonumber = tonumber(age) 
-	day = dayTextField.text 
-
-	if weekday =="saturday" or weekday == "sunday" then
-		display.newText( "it's  a weekend your smart here a cookie", display.contentCenterX, display.contentCenterY + 200, native.systemFont, 100 )	
 
 
-    return true
+local dayTextField = native.newTextField( display.contentCenterX, display.contentCenterY , 450, 120 )
+dayTextField.id = "answer textField"
+
+local ageTextField = native.newTextField( display.contentCenterX, display.contentCenterY + 150 , 450, 120 )
+ageTextField.id = "answer textField"
+
+
+local enterButton = display.newImageRect( "./assets/sprites/enterButton.png", 406, 157 )
+enterButton.x = display.contentCenterX
+enterButton.y = display.contentCenterY + 300
+enterButton.id = "enter button"
+ 
+local function enterButtonTouch( event )
+    local day
+    local age
+    local agetonumber
+
+    age = ageTextField.text
+    agetonumber = tonumber(age)
+	day = dayTextField.text
+
+	
+	if dayTextField == ("tuesday" or dayTextField == "thursday") or (agetonumber > 12 and agetonumber < 21 ) then
+		display.newText("you get student discount", 1024, 1200, native.systemFont, 100)
+		print(dayTextField.text)
+	else 
+		display.newText("you get regular price", 1024, 1200, native.systemFont, 100)
+	
+	end
 end
+
+enterButton:addEventListener( "touch", enterButtonTouch )
